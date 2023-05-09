@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package TasksAPI;
+
+service TasksRPCs {
+  rpc addTask (NewTaskRequest) returns (Task);
+  rpc completeTask (CompleteTaskRequest) returns (Task);
+  rpc listTasks (Empty) returns (AllTasks);
+}
+
+message Task {
+  int32 id = 1;
+  string name = 2;
+  string responsible = 3;
+  bool done = 4;
+}
+
+message NewTaskRequest {
+  string name = 1;
+  string responsible = 2;
+}
+
+message CompleteTaskRequest {
+  string id = 1;
+}
+
+message AllTasks {
+  repeated Task tasks = 1;
+}
+
+message Empty {}
